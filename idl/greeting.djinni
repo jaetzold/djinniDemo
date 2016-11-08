@@ -1,0 +1,22 @@
+greeting_service = interface +c {
+    static create_service(display: greeting_display): greeting_service;
+    # Call this in bg thread
+    greet(who: list<string>);
+    # Generating greetings is a lot of work
+    const cooldown_ms: i64 = 4000;
+}
+
+greeting_display = interface +j +o {
+    display(greeting: greeting);
+}
+
+greeting = record {
+    message: string;
+    color: greeting_color;
+}
+
+greeting_color = enum {
+    RED;
+    BLUE;
+}
+
